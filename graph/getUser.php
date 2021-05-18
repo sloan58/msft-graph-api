@@ -1,6 +1,6 @@
 <?php
 
-require('./vendor/autoload.php');
+require('../vendor/autoload.php');
 require('./api.php');
 
 use Microsoft\Graph\Model;

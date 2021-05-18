@@ -1,13 +1,13 @@
 <?php
 
-require('./vendor/autoload.php');
+require('../vendor/autoload.php');
 
 use GuzzleHttp\Client;
 use Microsoft\Graph\Graph;
 
 function getApiClient() {
 
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/msftGraphApi/');
     $dotenv->load();
 
     $guzzle = new Client();
