@@ -7,7 +7,7 @@ use Microsoft\Graph\Graph;
 
 function getApiClient() {
 
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/msftGraphApi/');
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
     $dotenv->load();
 
     $guzzle = new Client();

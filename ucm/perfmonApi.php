@@ -51,7 +51,7 @@ try {
             return $metric->Value;
         }
         return null;
-    }, $response['perfmonCollectCounterDataReturn'])))[0];
+    }, $response['perfmonCollectCounterDataReturn'])))[0] || '0';
 
     // Iterate the response and extract our useful information
     // * array_values = remove the array keys (ie [0] => 'foo' becomes just 'foo')
@@ -62,7 +62,7 @@ try {
             return $metric->Value;
         }
         return null;
-    }, $response['perfmonCollectCounterDataReturn'])))[0];
+    }, $response['perfmonCollectCounterDataReturn'])))[0] || '0';
 
     // Echo output for fun :-)
     echo "RegisteredHardwarePhones: $registeredHardwarePhones\n";
