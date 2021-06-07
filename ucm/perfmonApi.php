@@ -41,28 +41,30 @@ try {
         'Host' => 'hq-ucm-pub.karmatek.io',
         'Object' => 'Cisco CallManager'
     ]);
-
+    
     // Iterate the response and extract our useful information
     // * array_values = remove the array keys (ie [0] => 'foo' becomes just 'foo')
     // * array_filter = remove empty array elements (default behavior for the function)
-    // * array_map = loop over the array and return values based on some logic
-    $registeredHardwarePhones = array_values(array_filter(array_map(function($metric) {
+    $hardwarePhonesElement = array_values(array_filter($response['perfmonCollectCounterDataReturn'], function($metric) {
         if(strpos($metric->Name->_, 'RegisteredHardwarePhones') !== false) {
             return $metric->Value;
         }
-        return null;
-    }, $response['perfmonCollectCounterDataReturn'])))[0] || '0';
+    }));
+
+    $registeredHardwarePhones = isset($hardwarePhonesElement[0]) ? $hardwarePhonesElement[0]->Value : 0;
+    
 
     // Iterate the response and extract our useful information
     // * array_values = remove the array keys (ie [0] => 'foo' becomes just 'foo')
     // * array_filter = remove empty array elements (default behavior for the function)
-    // * array_map = loop over the array and return values based on some logic
-    $registeredOtherStationDevices = array_values(array_filter(array_map(function($metric) {
+    $otherStationElement = array_values(array_filter($response['perfmonCollectCounterDataReturn'], function($metric) {
         if(strpos($metric->Name->_, 'RegisteredOtherStationDevices') !== false) {
             return $metric->Value;
         }
-        return null;
-    }, $response['perfmonCollectCounterDataReturn'])))[0] || '0';
+    }));
+
+    $registeredOtherStationDevices = isset($otherStationElement[0]) ? $otherStationElement[0]->Value : 0;
+    
 
     // Echo output for fun :-)
     echo "RegisteredHardwarePhones: $registeredHardwarePhones\n";
