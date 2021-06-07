@@ -44,7 +44,7 @@ try {
     
     // Iterate the response and extract our useful information
     // * array_values = remove the array keys (ie [0] => 'foo' becomes just 'foo')
-    // * array_filter = remove empty array elements (default behavior for the function)
+    // * array_filter = only return elements that match our filter
     $hardwarePhonesElement = array_values(array_filter($response['perfmonCollectCounterDataReturn'], function($metric) {
         if(strpos($metric->Name->_, 'RegisteredHardwarePhones') !== false) {
             return $metric->Value;
@@ -56,7 +56,7 @@ try {
 
     // Iterate the response and extract our useful information
     // * array_values = remove the array keys (ie [0] => 'foo' becomes just 'foo')
-    // * array_filter = remove empty array elements (default behavior for the function)
+    // * array_filter = only return elements that match our filter
     $otherStationElement = array_values(array_filter($response['perfmonCollectCounterDataReturn'], function($metric) {
         if(strpos($metric->Name->_, 'RegisteredOtherStationDevices') !== false) {
             return $metric->Value;
